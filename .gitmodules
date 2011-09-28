@@ -1,0 +1,3 @@
+[submodule "includes/js/xtlightbox"]
+	path = includes/js/xtlightbox
+	url = git@github.com:iloveitaly/XtLightbox.git
