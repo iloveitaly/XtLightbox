@@ -28,7 +28,8 @@ var GalleryManager = new Class({
 
 			this.galleries[galleryID] = new XtLightbox(galleryImages, {
 			    loop: true,
-				preload: true,
+				preload: false,
+				
 		        adaptorOptions: {
 		            Image: {
 		                lightboxCompat: false
