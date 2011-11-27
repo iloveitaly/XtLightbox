@@ -49,6 +49,7 @@ Initialize the lightbox:
         new XtLightbox('.xtlightbox-gallery a');
     });
 
+[Using the Gallery Manager](https://gist.github.com/1398156)
 Configuration
 -------------
 
