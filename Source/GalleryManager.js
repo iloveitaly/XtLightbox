@@ -81,6 +81,14 @@ var GalleryManager = new Class({
 		this.viewSize = window.getScrollSize();
 		this.thumbSize = thumbsHolder.getElement('.infinite_width').getChildren().length * this.options.thumbBoxSize;
 		var shiftSize = Math.floor((this.viewSize.x - 100) / this.options.thumbBoxSize) * this.options.thumbBoxSize - 5 /* padding */;
+		
+		// make sure the gallery title is not cut off. measure the h4 off screen
+		thumbsHolder.setStyle('width', this.thumbSize);
+		var headerNativeSize = thumbsHolder.measure(function() { return this.getElement('h4').getScrollSize();});
+
+		if(this.thumbSize < headerNativeSize.x) {
+			this.thumbSize = headerNativeSize.x;
+		}
 
 		if(this.thumbSize > this.viewSize.x) {
 			$(this.options.thumbControlsHolder).setStyles({
