@@ -9,6 +9,7 @@ var GalleryManager = new Class({
 		thumbHolder: 'infinite_width',
 		
 		thumbBoxSize: 62,
+		thumbHeaderHeight: 80,
 		customGalleryConfig: null,
 		onShow: null,
 		lazyLoadThumbnails: true
@@ -35,6 +36,10 @@ var GalleryManager = new Class({
 		                lightboxCompat: false
 		            }
 		        },
+		
+				rendererOptions: {
+					minimumY: this.options.thumbHeaderHeight
+				},
 				
 				onShow: function() {
 					this.configureThumbs($(galleryID).getElement('.' + this.options.thumbGroupHolder));

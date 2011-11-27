@@ -26,7 +26,8 @@ XtLightbox.Renderer.Lightbox = new Class({
 		heightFxOptions: {},
 		contentFxOptions: {},
 		footerFxOptions: {},
-		hideArrowsFor: ['YouTube', 'Vimeo']
+		hideArrowsFor: ['YouTube', 'Vimeo'],
+		minimumY: 0
 	},
 
 	create: function(){
@@ -214,6 +215,7 @@ XtLightbox.Renderer.Lightbox = new Class({
 				width: elSize.x,
 				left: Math.round((winSize.x - elSize.x) / 2)
 			};
+			
 			if (size.y != this.elContent.getStyle('height').toInt()) {
 				this.resizing = true;
 				this.fxHeight.start(size.y);
