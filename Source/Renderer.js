@@ -42,7 +42,7 @@ XtLightbox.Renderer = new Class({
 		if (this.element) return this;
 		this.element = new Element('div.xt-lightbox').grab(
 			this.elWrapper = new Element('div.xt-lightbox-wrapper').adopt(
-				new Element('div.xt-lightbox-content-wrapper').adopt(
+				this.elContentWrapper = new Element('div.xt-lightbox-content-wrapper').adopt(
 					this.elContent = new Element('div.xt-lightbox-content'),
 					this.elArrows  = new Element('div.xt-lightbox-arrows').adopt(
 						this.btnPrev = new Element('span.button.xt-lightbox-prev').addEvent('click', this.fireEvent.pass('previous', this)),

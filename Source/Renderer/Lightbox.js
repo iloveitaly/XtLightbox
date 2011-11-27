@@ -184,6 +184,7 @@ XtLightbox.Renderer.Lightbox = new Class({
 		if (!this.shown) this.show();
 		var winSize = window.getSize(), elSize;
 		if (size && size.x && size.y){
+			// this.element is the 'root' holder, elWrapper, elFooter, etc are all children of this.element
 			this.elFooter.setStyles({
 				display: '',
 				height: ''
@@ -193,21 +194,35 @@ XtLightbox.Renderer.Lightbox = new Class({
 				x: this.elWrapper.getStyle('width').toInt(),
 				y: this.elWrapper.getStyle('height').toInt()
 			};
+			
+			// elFooter contains the comment text + close button
 			var fY = this.elFooter.getSize().y;
+			
+			// after calculating the footer height, hide for revealing animation later
 			this.elFooter.setStyle('display', 'none');
+			
+			// dynamically calculate the size taken up by padding, border, and other CSS styles
+			// this is then added to the contentf / element size (the size variable passed in) to calculate the needed height
+			var totalStylingSize = this.elWrapper.getSize().y - this.elContentWrapper.getSize().y
+			
 			elSize = {
 				x: elFull.x - elBox.x + size.x,
-				y: elFull.y - elBox.y + size.y + fY
+				y: totalStylingSize + size.y + fY
 			};
+			
 			this._fwopts = {
 				width: elSize.x,
 				left: Math.round((winSize.x - elSize.x) / 2)
 			};
-			if (size.y != this.elContent.getStyle('height').toInt()){
+			if (size.y != this.elContent.getStyle('height').toInt()) {
 				this.resizing = true;
 				this.fxHeight.start(size.y);
-				this.fxTop.start(Math.round((winSize.y - elSize.y) / 2));
-			} else this.onHeightChange();
+				
+				var minY = Math.round((winSize.y - elSize.y) / 2);
+				this.fxTop.start(minY > this.options.minimumY ? minY : this.options.minimumY);
+			} else {
+				this.onHeightChange();
+			}
 		} else {
 			// Reset size
 			size = size || {};
