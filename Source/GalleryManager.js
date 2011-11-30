@@ -68,7 +68,7 @@ var GalleryManager = new Class({
 					getElement('.' + this.options.thumbGroupHolder).
 					getElement('.infinite_width').
 					getFirst('a').
-					fireEvent('click', new Event());
+					fireEvent('click', new Event(ev));
 			}.bind(this));
 			
 			if(this.options.customGalleryConfig) {
